@@ -20,7 +20,7 @@ class _MinePageState extends State<MinePage> {
   Widget build(BuildContext context) {
 
     ProviderBoss provider = Provider.of<ProviderBoss>(context);
-    
+    //这个没有报错?这个测试的没有报错他说的好像是没上下文?
     currentNum = provider.curNum;
 
     return Scaffold(
@@ -216,7 +216,7 @@ class _MinePageState extends State<MinePage> {
                     onPressed:(){
                       provider.minus(); 
                       print("吉安一");
-                    },
+                    },//这些是第一个测试的
                   ),
                 ),
               ],

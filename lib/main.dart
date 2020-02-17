@@ -15,17 +15,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: _title,
-      home: MultiProvider(
-        
+    return MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (context) => ProviderBoss()),
           ChangeNotifierProvider(create: (context) => ProviderAccount()),
         ],
-        child: MyStateWidget()
-        ),
-    );
+        child: MaterialApp(
+          title: _title,
+          home: MyStateWidget(),
+        ));
   }
 }
 

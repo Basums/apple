@@ -98,10 +98,10 @@ class _AccountPageState extends State<AccountPage> {
                        SizedBox(
                          height: 20.0,
                        ),
-                       Text("我说",
+                       Text(_userDisplay.name,
                          style: TextStyle(
                            color: Colors.black,
-                           fontSize:20
+                           fontSize:5
                          ),
                        ),
                        SizedBox(
