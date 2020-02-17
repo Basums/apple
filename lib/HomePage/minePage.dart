@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
+import '../SubPage/AccountInfoPage.dart';
+
+import '../ProviderBoss.dart';
 
 class MinePage extends StatefulWidget {
   @override
@@ -8,8 +12,17 @@ class MinePage extends StatefulWidget {
 }
 
 class _MinePageState extends State<MinePage> {
+  int currentNum;
+
+  
+
   @override
   Widget build(BuildContext context) {
+
+    ProviderBoss provider = Provider.of<ProviderBoss>(context);
+    
+    currentNum = provider.curNum;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -55,6 +68,8 @@ class _MinePageState extends State<MinePage> {
                       ),
                       onTap: (){
                         print("跳转到账户信息子页面");
+                        // AccountPage();
+                        Navigator.push(context, new MaterialPageRoute(builder: (context) => new AccountPage()));
                       },
                     ),
                   ),
@@ -177,7 +192,33 @@ class _MinePageState extends State<MinePage> {
                     ),
                   ),
                   //卡片事件监听
-                )
+                ),
+                Text("全局变量测试代码"),
+                Container(
+                  width: 105,
+                  height: 100,
+                  color: Colors.blue,
+                  child: FlatButton(
+                    child: Text("负担"),
+                    onPressed:(){
+                      provider.add();
+                      print("加一");
+                    },
+                  ),
+                ),
+                Text(currentNum.toString()),
+                Container(
+                  width: 100,
+                  height: 100,
+                  color: Colors.cyan,
+                  child: FlatButton(
+                    child: Text("吉安一"),
+                    onPressed:(){
+                      provider.minus(); 
+                      print("吉安一");
+                    },
+                  ),
+                ),
               ],
             ),
           ),
