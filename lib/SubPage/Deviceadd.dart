@@ -15,6 +15,10 @@ import '../ProviderBoss.dart';
 import 'package:provider/provider.dart';
 
 import '../SubPage/Childrenpage/addOne.dart';
+import '../SubPage/Childrenpage/addTwo.dart';
+import '../SubPage/Childrenpage/addThree.dart';
+import '../SubPage/Childrenpage/addFour.dart';
+import '../SubPage/Childrenpage/addFive.dart';
 
 class DeviceaddPage extends StatefulWidget {
   @override
@@ -142,7 +146,6 @@ class _DeviceaddPageState extends State<DeviceaddPage> {
                         //    color: Colors.black38,
                         //  ),
                         onTap: () async {
-                          print("设备一");
                           Navigator.push(
                               context,
                               new MaterialPageRoute(
@@ -179,11 +182,11 @@ class _DeviceaddPageState extends State<DeviceaddPage> {
                         //    color: Colors.black38,
                         //  ),
                         onTap: () async {
-                          print("设备二");
-                          // Navigator.push(
-                          //     context,
-                          //     new MaterialPageRoute(
-                          //         builder: (context) => new RegisterPage()));
+                          // print("设备二");
+                          Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                  builder: (context) => new Addtwo()));
                         },
                       ),
                     ),
@@ -216,11 +219,11 @@ class _DeviceaddPageState extends State<DeviceaddPage> {
                         //    color: Colors.black38,
                         //  ),
                         onTap: () async {
-                          print("设备三");
-                          // Navigator.push(
-                          //     context,
-                          //     new MaterialPageRoute(
-                          //         builder: (context) => new RegisterPage()));
+                          // print("设备三");
+                          Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                  builder: (context) => new Addthree()));
                         },
                       ),
                     ),
@@ -253,11 +256,11 @@ class _DeviceaddPageState extends State<DeviceaddPage> {
                         //    color: Colors.black38,
                         //  ),
                         onTap: () async {
-                          print("设备四");
-                          // Navigator.push(
-                          //     context,
-                          //     new MaterialPageRoute(
-                          //         builder: (context) => new RegisterPage()));
+                          // print("设备四");
+                          Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                  builder: (context) => new Addfour()));
                         },
                       ),
                     ),
@@ -290,11 +293,11 @@ class _DeviceaddPageState extends State<DeviceaddPage> {
                         //    color: Colors.black38,
                         //  ),
                         onTap: () async {
-                          print("设备五");
-                          // Navigator.push(
-                          //     context,
-                          //     new MaterialPageRoute(
-                          //         builder: (context) => new RegisterPage()));
+                          // print("设备五");
+                          Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                  builder: (context) => new Addfive()));
                         },
                       ),
                     ),

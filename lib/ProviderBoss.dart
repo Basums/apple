@@ -70,7 +70,7 @@ class ProviderDevices extends ChangeNotifier {
   var database = DevicesHelper(); //设备数据库
 
   Devices devicesDisplay =
-      new Devices(2020, "0", "0", "0", "0", "0"); //外部显示用的设备
+      new Devices(2020, "暂无", "暂无", "暂无", "暂无", "暂无"); //外部显示用的设备
 
   getDevice() async {
     //从数据库获取用户
@@ -78,14 +78,19 @@ class ProviderDevices extends ChangeNotifier {
     if (datas.length == 0) //如果数据库成员为空
     {
       //则添加youke到数据库，作为初始化
-      Devices youke = new Devices(2020, "deviceOneId", "deviceTwoId",
-          "deviceThreeId", "deviceFourId", "deviceFiveId");
+      Devices youke = new Devices(2020, "暂无", "暂无",
+          "暂无", "暂无", "暂无");
       //添加进数据库
       devicesDisplay = youke;
     } else if (datas.length > 0) //如果数据库存在数据
     {
       devicesDisplay = Devices.fromMap(datas.last);
     }
+    notifyListeners();
+  }
+
+  getDeviceById(int userid) async {
+    devicesDisplay = await database.getItem(userid);
     notifyListeners();
   }
 

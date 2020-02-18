@@ -249,11 +249,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                     //所有应该清零或者初始化
                                     _devicesDisplay = Devices(
                                         registerUserId,
-                                        "deviceOneId",
-                                        "deviceTwoId",
-                                        "deviceThreeId",
-                                        "deviceFourId",
-                                        "deviceFiveId");
+                                        "暂无",
+                                        "暂无",
+                                        "暂无",
+                                        "暂无",
+                                        "暂无");
                                     providerDevices
                                         .savedevices(_devicesDisplay); //保存
                                     // 添加成功
@@ -269,9 +269,20 @@ class _RegisterPageState extends State<RegisterPage> {
                                   } else {
                                     providaccount.changeUser(search);
                                     providaccount.updatamessage("登录成功");
-                                    //登录成功的时候，也应该更新一下；
-                                    providerDevices.devicesDisplay = search2;
-                                    // providerDevices.getDevicesById(registerUserId);
+                                    //登录成功的时候，也应该更新一下；//主要是为了消除某些老版本账号未设置的情况
+                                    if (search2 == null) {
+                                      _devicesDisplay = Devices(
+                                          registerUserId,
+                                          "暂无",
+                                          "暂无",
+                                          "暂无",
+                                          "暂无",
+                                          "暂无");
+                                      providerDevices
+                                          .savedevices(_devicesDisplay); //保存
+                                    } else {
+                                      providerDevices.devicesDisplay = search2;
+                                    }
                                   }
                                 }
                               } else {

@@ -1,7 +1,6 @@
 //个人中心账户信息子页面
 
 ////用户信息的跳转页面，这是一个数据库文件，用来登录账户和更改账户或者是新建账户。数据库为本地数据库
-import 'dart:async';
 import 'registerPage.dart';
 import 'package:flutter/material.dart';
 
@@ -9,8 +8,8 @@ import '../static/MineO/pix.dart';
 
 //导入模型
 import '../model/AccountModel.dart';
+import '../model/Devicesmodel.dart';
 //导入数据库
-import '../database/AccountHelper.dart';
 //导入provider
 import '../ProviderBoss.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +30,7 @@ class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
     ProviderAccount providaccount = Provider.of<ProviderAccount>(context);
+    ProviderDevices providerDevices = Provider.of<ProviderDevices>(context);
     _userDisplay = providaccount.userDisplay;
 
     return Scaffold(
@@ -166,20 +166,54 @@ class _AccountPageState extends State<AccountPage> {
                           size: 30,
                           color: Colors.lightBlue,
                         ),
-                        title: new Text('敬请期待',
+                        title: new Text('连接账号匹配的设备信息',
                             style: new TextStyle(
                               fontSize: 18, //文字大小
                               fontFamily: "yahei",
                               color: Colors.black,
                             )),
-                        //  trailing: new Icon(
-                        //    Icons.arrow_right,
-                        //    size: 30,
-                        //    color: Colors.black38,
-                        //  ),
-                        //  onTap: () async{
-                        //    Navigator.push(context, new MaterialPageRoute(builder: (context) => new RegisterPage()));
-                        //  },
+                        onTap: () async {
+                          //根据对应Id查询下面匹配的设备信息
+                          providerDevices.getDeviceById(_userDisplay.userId);
+                          //弹出一个对话框，提示用户更新成功
+                          showDialog<Null>(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (BuildContext context) {
+                                return new AlertDialog(
+                                  title: new Text("当前设备"),
+                                  content: new SingleChildScrollView(
+                                    child: new ListBody(
+                                      children: <Widget>[
+                                        new Text("设备1_Id：  " +
+                                            providerDevices
+                                                .devicesDisplay.deviceOneId),
+                                        new Text("设备2_Id：  " +
+                                            providerDevices
+                                                .devicesDisplay.deviceTwoId),
+                                        new Text("设备3_Id：  " +
+                                            providerDevices
+                                                .devicesDisplay.deviceThreeId),
+                                        new Text("设备4_Id：  " +
+                                            providerDevices
+                                                .devicesDisplay.deviceFourId),
+                                        new Text("设备5_Id：  " +
+                                            providerDevices
+                                                .devicesDisplay.deviceFiveId),
+                                      ],
+                                    ),
+                                  ),
+                                  actions: <Widget>[
+                                    new FlatButton(
+                                      child: new Text("Ok"),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    )
+                                  ],
+                                );
+                              });
+                        },
                       ),
                     ),
                     //卡片事件监听

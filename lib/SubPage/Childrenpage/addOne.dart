@@ -148,7 +148,7 @@ class _AddoneState extends State<Addone> {
                               color: Colors.white,
                             ),
                             SizedBox(
-                              width: 25,
+                              width: 5,
                             ),
                             Text(
                               'Id:',
@@ -159,10 +159,10 @@ class _AddoneState extends State<Addone> {
                               ),
                             ),
                             SizedBox(
-                              width: 15,
+                              width: 5,
                             ),
                             Text(
-                              _devicesDisplay.deviceOneId.toString(),
+                              _devicesDisplay.deviceOneId,
                               style: new TextStyle(
                                 fontSize: 18, //文字大小
                                 fontFamily: "yahei",
@@ -172,7 +172,6 @@ class _AddoneState extends State<Addone> {
                           ],
                         ),
                       ),
-
                       Container(
                         height: 70,
                         width: 300,
@@ -185,7 +184,7 @@ class _AddoneState extends State<Addone> {
                                 flex: 1,
                                 child: TextField(
                                   maxLength:
-                                      10, //最大长度，设置此项会让TextField右下角有一个输入数量的统计字符串
+                                      12, //最大长度，设置此项会让TextField右下角有一个输入数量的统计字符串
                                   maxLines: 1, //最大行数
                                   autocorrect: true, //是否自动更正
                                   textAlign: TextAlign.justify, //文本对齐方式
@@ -221,18 +220,22 @@ class _AddoneState extends State<Addone> {
                             splashColor: Colors.cyan.shade100,
                             onPressed: () async {
                               //进行数据库数据校验
-                              print("进行数据库校验");
-                              //设备赋Id
-                              print(_userDisplay.userId);
-                              print(_devicesDisplay.userId);
-                              
-                              //设备Id绑定当前用户Id;
-                              // _devicesDisplay.userId = _userDisplay.userId;
-                              // _devicesDisplay.deviceOneId = registerdevicesId;
-                              // providerDevices.getDevicesById(_userDisplay.userId);
+                              // print("进行数据库校验");
+                              // //设备赋Id
+                              // print(_userDisplay.userId);
+                              // print(_devicesDisplay.userId);
 
-                              // _userDisplay.userId
-
+                              // print(registerdevicesId);
+                              //只更改本修改下的Id,不变更其余设备
+                              _devicesDisplay = new Devices(
+                                  _devicesDisplay.userId,
+                                  registerdevicesId.toString(), //修改的部分
+                                  _devicesDisplay.deviceTwoId,
+                                  _devicesDisplay.deviceThreeId,
+                                  _devicesDisplay.deviceFourId,
+                                  _devicesDisplay.deviceFiveId);
+                              providerDevices
+                                  .updateDevicesById(_devicesDisplay);
                             },
                           )),
                     ],
