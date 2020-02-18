@@ -30,7 +30,7 @@ class DevicesHelper {
 
   initDb() async {
     var databasesPath = await getDatabasesPath();
-    String path = join(databasesPath, 'Langxsqflite.db');
+    String path = join(databasesPath, 'sqflite.db');
     var ourDb = await openDatabase(path, version: 1, onCreate: _onCreate);
     return ourDb;
   }
@@ -38,7 +38,7 @@ class DevicesHelper {
   //创建数据库表
   void _onCreate(Database db, int version) async {
     await db.execute(
-        "create table $tableName($columnUserId integer primary key,$columndeviceOneId integer,$columndeviceTwoId integer,$columndeviceThreeId integer,$columndeviceFourId integer,$columndeviceFiveId integer");
+        "create table $tableName($columnUserId integer primary key,$columndeviceOneId text,$columndeviceTwoId text,$columndeviceThreeId text,$columndeviceFourId text,$columndeviceFiveId text");
   }
 
   //插入数据

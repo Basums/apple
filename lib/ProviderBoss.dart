@@ -69,21 +69,29 @@ class ProviderDevices extends ChangeNotifier {
   List<Devices> datas = new List(); //存储设备列表
   var database = DevicesHelper(); //设备数据库
 
-  Devices devicesDisplay = new Devices(2020, 0, 0, 0, 0, 0); //外部显示用的设备
+  Devices devicesDisplay =
+      new Devices(2020, "0", "0", "0", "0", "0"); //外部显示用的设备
 
-  getDevicesById(int userId) //通过Id获取
-  async {
-    Devices search = await database.getItem(userId);
-    if (search == null) //如果搜索结果为空，则创建该设备用户
+  getDevice() async {
+    //从数据库获取用户
+    List datas = await database.getTotalList();
+    if (datas.length == 0) //如果数据库成员为空
     {
-      Devices youke = new Devices(userId, 0, 0, 0, 0, 0);
+      //则添加youke到数据库，作为初始化
+      Devices youke = new Devices(2020, "deviceOneId", "deviceTwoId",
+          "deviceThreeId", "deviceFourId", "deviceFiveId");
+      //添加进数据库
       devicesDisplay = youke;
-      database.saveItem(devicesDisplay);//保存条目
-    } else {
-      //如果搜索不为空
-      //说明有，即可匹配
-      devicesDisplay = search;
+    } else if (datas.length > 0) //如果数据库存在数据
+    {
+      devicesDisplay = Devices.fromMap(datas.last);
     }
+    notifyListeners();
+  }
+
+  savedevices(Devices update) async {
+    await database.saveItem(update); //更新数据库
+    devicesDisplay = update; //更新显示
     notifyListeners(); //监听
   }
 

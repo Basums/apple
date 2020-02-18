@@ -2,11 +2,11 @@
 class Devices {
   //用来跟设备进行匹配
   int userId;
-  int deviceOneId;
-  int deviceTwoId;
-  int deviceThreeId;
-  int deviceFourId;
-  int deviceFiveId;
+  String deviceOneId;
+  String deviceTwoId;
+  String deviceThreeId;
+  String deviceFourId;
+  String deviceFiveId;
 
   //重载构造函数
   Devices(this.userId, this.deviceOneId, this.deviceTwoId, this.deviceThreeId,

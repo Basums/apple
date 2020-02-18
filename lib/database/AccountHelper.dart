@@ -8,7 +8,6 @@ import '../model/AccountModel.dart';
 //用户ID,用户名，用户密码,
 //UserId,Password,Name
 class AccountHelper {
-
   static final AccountHelper _instance = AccountHelper.internal();
   factory AccountHelper() => _instance;
   final String tableName = "Flutteraccount";
@@ -57,19 +56,18 @@ class AccountHelper {
   //查询总数
   Future<int> getCount() async {
     var dbClient = await db;
-    return Sqflite.firstIntValue(await dbClient.rawQuery(
-        "SELECT COUNT(*) FROM $tableName"
-    ));
+    return Sqflite.firstIntValue(
+        await dbClient.rawQuery("SELECT COUNT(*) FROM $tableName"));
   }
 
   //按照id查询
   Future<User> getItem(int userId) async {
     var dbClient = await db;
-    var result = await dbClient.rawQuery("SELECT * FROM $tableName WHERE UserId = $userId");
+    var result = await dbClient
+        .rawQuery("SELECT * FROM $tableName WHERE UserId = $userId");
     if (result.length == 0) return null;
     return User.fromMap(result.first);
   }
-
 
   //清空数据
   Future<int> clear() async {
@@ -77,12 +75,11 @@ class AccountHelper {
     return await dbClient.delete(tableName);
   }
 
-
   //根据id删除
   Future<int> deleteItem(int id) async {
     var dbClient = await db;
-    return await dbClient.delete(tableName,
-        where: "$columnUserId = ?", whereArgs: [id]);
+    return await dbClient
+        .delete(tableName, where: "$columnUserId = ?", whereArgs: [id]);
   }
 
   //修改

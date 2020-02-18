@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:apple/database/DeviceHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -17,8 +18,11 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   User _userDisplay;
+  Devices _devicesDisplay;
   //开启页面的时候从数据库调用最新的一个数据
   var datab = AccountHelper(); //数据库
+
+  var datac = DevicesHelper(); //创建第二个数据库
 
   int registerUserId;
   String registerPassword;
@@ -33,7 +37,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     ProviderAccount providaccount = Provider.of<ProviderAccount>(context);
-    
+
     //用于设备更新
     ProviderDevices providerDevices = Provider.of<ProviderDevices>(context);
 
@@ -224,6 +228,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                 //查询条目
                                 User search =
                                     await datab.getItem(registerUserId);
+
+                                Devices search2 =
+                                    await datac.getItem(registerUserId);
+
                                 if (search == null) //如果结果为空,则需要判断是否有姓名
                                 {
                                   if ((registerName == "") ||
@@ -239,9 +247,15 @@ class _RegisterPageState extends State<RegisterPage> {
                                     //在注册的时候我觉的可以直接更新Devices的设备进去
                                     //注册的时候是不存在用户的，也不存在用户对应的5个数据
                                     //所有应该清零或者初始化
-                                    // Devices devices = new Devices(registerUserId, 0, 0, 0, 0, 0);
-                                    // providerDevices.updateDevicesById(devices);
-                                    
+                                    _devicesDisplay = Devices(
+                                        registerUserId,
+                                        "deviceOneId",
+                                        "deviceTwoId",
+                                        "deviceThreeId",
+                                        "deviceFourId",
+                                        "deviceFiveId");
+                                    providerDevices
+                                        .savedevices(_devicesDisplay); //保存
                                     // 添加成功
                                     providaccount.updatamessage("注册模式,添加成功");
                                   }
@@ -256,7 +270,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                     providaccount.changeUser(search);
                                     providaccount.updatamessage("登录成功");
                                     //登录成功的时候，也应该更新一下；
-                                    // providerDevices.getDevicesById(registerUserId);                                    
+                                    providerDevices.devicesDisplay = search2;
+                                    // providerDevices.getDevicesById(registerUserId);
                                   }
                                 }
                               } else {
