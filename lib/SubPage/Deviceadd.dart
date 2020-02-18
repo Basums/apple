@@ -1,7 +1,6 @@
 //个人中心账户信息子页面
 ////用户信息的跳转页面，这是一个数据库文件，用来登录账户和更改账户或者是新建账户。数据库为本地数据库
-import 'dart:async';
-import 'registerPage.dart';
+
 import 'package:flutter/material.dart';
 
 import '../static/MineO/pix.dart';
@@ -9,7 +8,7 @@ import '../static/MineO/pix.dart';
 //导入模型
 import '../model/AccountModel.dart';
 //导入数据库
-import '../database/AccountHelper.dart';
+
 //导入provider
 import '../ProviderBoss.dart';
 import 'package:provider/provider.dart';
@@ -80,7 +79,7 @@ class _DeviceaddPageState extends State<DeviceaddPage> {
                         semanticContainer: true,
                         child: Column(
                           children: <Widget>[
-                            Image.asset(Account_Image[0],
+                            Image.asset(accountimg[0],
                                 height: 100, fit: BoxFit.cover)
                           ],
                         ),

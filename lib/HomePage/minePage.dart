@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
+
 
 import '../SubPage/AccountInfoPage.dart';
 import '../SubPage/Deviceadd.dart';
 
-import '../ProviderBoss.dart';
+
 
 class MinePage extends StatefulWidget {
   @override
@@ -58,7 +58,7 @@ class _MinePageState extends State<MinePage> {
                     color: Colors.black38,
                   ),
                   onTap: () {
-                    print("跳转到账户信息子页面");
+                    // print("跳转到账户信息子页面");
                     // AccountPage();
                     Navigator.push(
                         context,
@@ -115,7 +115,7 @@ class _MinePageState extends State<MinePage> {
                         color: Colors.black38,
                       ),
                       onTap: () {
-                        print("跳转到设备绑定子页面");
+                        // print("跳转到设备绑定子页面");
                         Navigator.push(
                             context,
                             new MaterialPageRoute(

@@ -1,3 +1,3 @@
-List<String> Account_Image = [
+List<String> accountimg = [
   "assert/images/tou.png",
 ];

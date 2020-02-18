@@ -8,7 +8,6 @@ import '../static/MineO/pix.dart';
 
 //导入模型
 import '../model/AccountModel.dart';
-import '../model/Devicesmodel.dart';
 //导入数据库
 //导入provider
 import '../ProviderBoss.dart';
@@ -75,7 +74,7 @@ class _AccountPageState extends State<AccountPage> {
                         semanticContainer: true,
                         child: Column(
                           children: <Widget>[
-                            Image.asset(Account_Image[0],
+                            Image.asset(accountimg[0],
                                 height: 100, fit: BoxFit.cover)
                           ],
                         ),

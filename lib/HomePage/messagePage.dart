@@ -197,11 +197,18 @@ class _MessagePageState extends State<MessagePage> {
   }
 }
 
-class CardScrollWidget extends StatelessWidget {
-  var currentPageIndex;
-  var padding = 20.0;
-  var verticalInset = 20.0;
+
+class CardScrollWidget extends StatefulWidget {
+  final double currentPageIndex;
   CardScrollWidget(this.currentPageIndex);
+  @override
+  _CardScrollWidgetState createState() => _CardScrollWidgetState();
+}
+
+class _CardScrollWidgetState extends State<CardScrollWidget> {
+  var padding = 20.0;
+
+  var verticalInset = 20.0;
 
   @override
   Widget build(BuildContext context) {
@@ -223,7 +230,7 @@ class CardScrollWidget extends StatelessWidget {
         List<Widget> cardList = new List();
 
         for (var i = 0; i < images.length; i++) {
-          var delta = i - currentPageIndex;
+          var delta = i - widget.currentPageIndex;
 
           bool isOnRight = delta > 0;
           var start = padding +
