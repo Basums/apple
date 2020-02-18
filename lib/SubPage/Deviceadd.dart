@@ -1,5 +1,4 @@
 //个人中心账户信息子页面
-
 ////用户信息的跳转页面，这是一个数据库文件，用来登录账户和更改账户或者是新建账户。数据库为本地数据库
 import 'dart:async';
 import 'registerPage.dart';
@@ -15,12 +14,14 @@ import '../database/AccountHelper.dart';
 import '../ProviderBoss.dart';
 import 'package:provider/provider.dart';
 
-class AccountPage extends StatefulWidget {
+import '../SubPage/Childrenpage/addOne.dart';
+
+class DeviceaddPage extends StatefulWidget {
   @override
-  _AccountPageState createState() => _AccountPageState();
+  _DeviceaddPageState createState() => _DeviceaddPageState();
 }
 
-class _AccountPageState extends State<AccountPage> {
+class _DeviceaddPageState extends State<DeviceaddPage> {
   User _userDisplay;
   //开启页面的时候从数据库调用最新的一个数据
   @override
@@ -37,7 +38,7 @@ class _AccountPageState extends State<AccountPage> {
       appBar: PreferredSize(
         child: AppBar(
           backgroundColor: Colors.cyan,
-          title: Text("账户详情",
+          title: Text("设备绑定",
               style: new TextStyle(
                 fontSize: 18, //文字大小
                 fontFamily: "yahei",
@@ -111,7 +112,7 @@ class _AccountPageState extends State<AccountPage> {
             padding: const EdgeInsets.only(left: 15.0, right: 15.0),
             child: Container(
               alignment: Alignment.topCenter,
-              height: 185,
+              height: 320,
               child: Column(
                 children: <Widget>[
                   Card(
@@ -125,27 +126,27 @@ class _AccountPageState extends State<AccountPage> {
                       alignment: Alignment.center,
                       child: ListTile(
                         leading: new Icon(
-                          Icons.account_balance,
+                          Icons.devices_other,
                           size: 30,
                           color: Colors.lightBlue,
                         ),
-                        title: new Text('登录我的账号',
+                        title: new Text('设备一',
                             style: new TextStyle(
                               fontSize: 18, //文字大小
                               fontFamily: "yahei",
                               color: Colors.black,
                             )),
-                        trailing: new Icon(
-                          Icons.arrow_right,
-                          size: 30,
-                          color: Colors.black38,
-                        ),
+                        //  trailing: new Icon(
+                        //    Icons.arrow_right,
+                        //    size: 30,
+                        //    color: Colors.black38,
+                        //  ),
                         onTap: () async {
-                          providaccount.updatamessage("请开始您的表演");
+                          print("设备一");
                           Navigator.push(
                               context,
                               new MaterialPageRoute(
-                                  builder: (context) => new RegisterPage()));
+                                  builder: (context) => new Addone()));
                         },
                       ),
                     ),
@@ -162,11 +163,11 @@ class _AccountPageState extends State<AccountPage> {
                       alignment: Alignment.center,
                       child: ListTile(
                         leading: new Icon(
-                          Icons.add,
+                          Icons.devices_other,
                           size: 30,
                           color: Colors.lightBlue,
                         ),
-                        title: new Text('敬请期待',
+                        title: new Text('设备二',
                             style: new TextStyle(
                               fontSize: 18, //文字大小
                               fontFamily: "yahei",
@@ -177,9 +178,124 @@ class _AccountPageState extends State<AccountPage> {
                         //    size: 30,
                         //    color: Colors.black38,
                         //  ),
-                        //  onTap: () async{
-                        //    Navigator.push(context, new MaterialPageRoute(builder: (context) => new RegisterPage()));
-                        //  },
+                        onTap: () async {
+                          print("设备二");
+                          // Navigator.push(
+                          //     context,
+                          //     new MaterialPageRoute(
+                          //         builder: (context) => new RegisterPage()));
+                        },
+                      ),
+                    ),
+                    //卡片事件监听
+                  ),
+                  Card(
+                    clipBehavior: Clip.antiAlias,
+                    semanticContainer: false,
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(14.0))),
+                    child: Container(
+                      color: Colors.white12,
+                      height: 55,
+                      alignment: Alignment.center,
+                      child: ListTile(
+                        leading: new Icon(
+                          Icons.devices_other,
+                          size: 30,
+                          color: Colors.lightBlue,
+                        ),
+                        title: new Text('设备三',
+                            style: new TextStyle(
+                              fontSize: 18, //文字大小
+                              fontFamily: "yahei",
+                              color: Colors.black,
+                            )),
+                        //  trailing: new Icon(
+                        //    Icons.arrow_right,
+                        //    size: 30,
+                        //    color: Colors.black38,
+                        //  ),
+                        onTap: () async {
+                          print("设备三");
+                          // Navigator.push(
+                          //     context,
+                          //     new MaterialPageRoute(
+                          //         builder: (context) => new RegisterPage()));
+                        },
+                      ),
+                    ),
+                    //卡片事件监听
+                  ),
+                  Card(
+                    clipBehavior: Clip.antiAlias,
+                    semanticContainer: false,
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(14.0))),
+                    child: Container(
+                      color: Colors.white12,
+                      height: 55,
+                      alignment: Alignment.center,
+                      child: ListTile(
+                        leading: new Icon(
+                          Icons.devices_other,
+                          size: 30,
+                          color: Colors.lightBlue,
+                        ),
+                        title: new Text('设备四',
+                            style: new TextStyle(
+                              fontSize: 18, //文字大小
+                              fontFamily: "yahei",
+                              color: Colors.black,
+                            )),
+                        //  trailing: new Icon(
+                        //    Icons.arrow_right,
+                        //    size: 30,
+                        //    color: Colors.black38,
+                        //  ),
+                        onTap: () async {
+                          print("设备四");
+                          // Navigator.push(
+                          //     context,
+                          //     new MaterialPageRoute(
+                          //         builder: (context) => new RegisterPage()));
+                        },
+                      ),
+                    ),
+                    //卡片事件监听
+                  ),
+                  Card(
+                    clipBehavior: Clip.antiAlias,
+                    semanticContainer: false,
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(14.0))),
+                    child: Container(
+                      color: Colors.white12,
+                      height: 55,
+                      alignment: Alignment.center,
+                      child: ListTile(
+                        leading: new Icon(
+                          Icons.devices_other,
+                          size: 30,
+                          color: Colors.lightBlue,
+                        ),
+                        title: new Text('设备五',
+                            style: new TextStyle(
+                              fontSize: 18, //文字大小
+                              fontFamily: "yahei",
+                              color: Colors.black,
+                            )),
+                        //  trailing: new Icon(
+                        //    Icons.arrow_right,
+                        //    size: 30,
+                        //    color: Colors.black38,
+                        //  ),
+                        onTap: () async {
+                          print("设备五");
+                          // Navigator.push(
+                          //     context,
+                          //     new MaterialPageRoute(
+                          //         builder: (context) => new RegisterPage()));
+                        },
                       ),
                     ),
                     //卡片事件监听

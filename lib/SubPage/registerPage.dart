@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart';
 import '../ProviderBoss.dart';
 import '../model/AccountModel.dart';
+import '../model/Devicesmodel.dart';
 
 import '../database/AccountHelper.dart';
 
@@ -32,6 +33,10 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     ProviderAccount providaccount = Provider.of<ProviderAccount>(context);
+    
+    //用于设备更新
+    ProviderDevices providerDevices = Provider.of<ProviderDevices>(context);
+
     _userDisplay = providaccount.userDisplay;
     registermessage = providaccount.registermessage;
 
@@ -230,6 +235,13 @@ class _RegisterPageState extends State<RegisterPage> {
                                     _userDisplay = User(registerUserId,
                                         registerPassword, registerName); //重载
                                     providaccount.updateUser(_userDisplay); //更新
+
+                                    //在注册的时候我觉的可以直接更新Devices的设备进去
+                                    //注册的时候是不存在用户的，也不存在用户对应的5个数据
+                                    //所有应该清零或者初始化
+                                    // Devices devices = new Devices(registerUserId, 0, 0, 0, 0, 0);
+                                    // providerDevices.updateDevicesById(devices);
+                                    
                                     // 添加成功
                                     providaccount.updatamessage("注册模式,添加成功");
                                   }
@@ -243,6 +255,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                   } else {
                                     providaccount.changeUser(search);
                                     providaccount.updatamessage("登录成功");
+                                    //登录成功的时候，也应该更新一下；
+                                    // providerDevices.getDevicesById(registerUserId);                                    
                                   }
                                 }
                               } else {

@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 import '../SubPage/AccountInfoPage.dart';
+import '../SubPage/Deviceadd.dart';
 
 import '../ProviderBoss.dart';
 
@@ -12,13 +13,8 @@ class MinePage extends StatefulWidget {
 }
 
 class _MinePageState extends State<MinePage> {
-  int currentNum;
-
-  
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -117,7 +113,8 @@ class _MinePageState extends State<MinePage> {
                         color: Colors.black38,
                       ),
                       onTap: (){
-                        print("按下");
+                        print("跳转到设备绑定子页面");
+                        Navigator.push(context, new MaterialPageRoute(builder: (context) => new DeviceaddPage()));
                       },
                     ),
                   ),

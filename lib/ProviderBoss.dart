@@ -2,8 +2,13 @@
 
 import 'package:flutter/material.dart';
 
+//2
 import 'model/AccountModel.dart';
 import 'database/AccountHelper.dart';
+
+//3
+import 'model/Devicesmodel.dart';
+import 'database/DeviceHelper.dart';
 
 class ProviderBoss extends ChangeNotifier {
   int curNum = 0;
@@ -55,6 +60,39 @@ class ProviderAccount extends ChangeNotifier {
   String registermessage = "注册时必须填3项,而登录只需ID和密码"; //显示信息
   updatamessage(String message) {
     registermessage = message;
+    notifyListeners();
+  }
+}
+
+class ProviderDevices extends ChangeNotifier {
+  //新建数据库
+  List<Devices> datas = new List(); //存储设备列表
+  var database = DevicesHelper(); //设备数据库
+
+  Devices devicesDisplay = new Devices(2020, 0, 0, 0, 0, 0); //外部显示用的设备
+
+  getDevicesById(int userId) //通过Id获取
+  async {
+    Devices search = await database.getItem(userId);
+    if (search == null) //如果搜索结果为空，则创建该设备用户
+    {
+      Devices youke = new Devices(userId, 0, 0, 0, 0, 0);
+      devicesDisplay = youke;
+      database.saveItem(devicesDisplay);//保存条目
+    } else {
+      //如果搜索不为空
+      //说明有，即可匹配
+      devicesDisplay = search;
+    }
+    notifyListeners(); //监听
+  }
+
+  updateDevicesById(Devices devices) async {
+    //根据Id更新
+    await database.updateItem(devices);
+    //这是用来更新该用户下面的对用设备
+    //显示
+    devicesDisplay = devices;
     notifyListeners();
   }
 }
