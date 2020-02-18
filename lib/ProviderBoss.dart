@@ -41,9 +41,20 @@ class ProviderAccount extends ChangeNotifier {
     notifyListeners();
   }
 
-  updateUser(User updateuser) {
-    database.saveItem(updateuser);//更新数据库
-    userDisplay = updateuser;//更新显示
-    notifyListeners();//监听
+  updateUser(User updateuser) async {
+    await database.saveItem(updateuser); //更新数据库
+    userDisplay = updateuser; //更新显示
+    notifyListeners(); //监听
+  }
+
+  changeUser(User updateuser) {
+    userDisplay = updateuser;
+    notifyListeners(); //监听
+  }
+
+  String registermessage = "注册时必须填3项,而登录只需ID和密码"; //显示信息
+  updatamessage(String message) {
+    registermessage = message;
+    notifyListeners();
   }
 }

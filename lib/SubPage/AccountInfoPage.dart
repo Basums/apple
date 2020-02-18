@@ -2,6 +2,7 @@
 
 ////用户信息的跳转页面，这是一个数据库文件，用来登录账户和更改账户或者是新建账户。数据库为本地数据库
 import 'dart:async';
+import 'registerPage.dart';
 import 'package:flutter/material.dart';
 
 import '../static/MineO/pix.dart';
@@ -36,12 +37,10 @@ class _AccountPageState extends State<AccountPage> {
    ProviderAccount providaccount = Provider.of<ProviderAccount>(context);
    _userDisplay = providaccount.userDisplay;
 
-  //  ProviderBoss provider = Provider.of<ProviderBoss>(context);
-
    return Scaffold(
      appBar: PreferredSize(
        child: AppBar(
-         backgroundColor: Colors.black,
+         backgroundColor: Colors.cyan,
          title: Text("账户详情",
              style: new TextStyle(
                fontSize: 18,//文字大小
@@ -85,34 +84,30 @@ class _AccountPageState extends State<AccountPage> {
                      ),
                    ),
                  ),
-                 SizedBox(
-                   width: 5.0,
-                 ),
                  Container(
                    alignment: Alignment.topLeft,
-
-                   width: 20,
+                   width: 190,
                    height: 100,
                    child: Column(
                      children: <Widget>[
                        SizedBox(
-                         height: 20.0,
+                         height: 28.0,
                        ),
                        Text(_userDisplay.name,
                          style: TextStyle(
                            color: Colors.black,
-                           fontSize:5
+                           fontSize:20
                          ),
                        ),
                        SizedBox(
                          height: 10.0,
                        ),
-//                        Text(_datas.length == 0? "Id:  游客": "Id   "+_datas.last.toMap()['UserId'].toString(),
-//                          style: TextStyle(
-//                              color: Colors.black,
-//                              fontSize: 20
-//                          ),
-//                        )
+                       Text("UserId:    " + _userDisplay.userId.toString(),
+                         style: TextStyle(
+                             color: Colors.black,
+                             fontSize: 18
+                         ),
+                       )
                      ],
                    ),
                  )
@@ -125,7 +120,6 @@ class _AccountPageState extends State<AccountPage> {
            child: Container(
              alignment: Alignment.topCenter,
              height: 185,
-             color: Colors.blue,
              child: Column(
                children: <Widget>[
                  Card(
@@ -154,11 +148,42 @@ class _AccountPageState extends State<AccountPage> {
                          size: 30,
                          color: Colors.black38,
                        ),
-//                        onTap: () async{
-////                          User result = await Navigator.push(context, new MaterialPageRoute(builder: (context) => new RegisterPage(_datas.length == 0? "游客": _datas.last.toMap()['Name'], _datas.length == 0? 000000 : _datas.last.toMap()['UserId'], _datas.length == 0? "000000" : _datas.last.toMap()['Password'])));
-////                          print("接收到User");
-////                          print(result);
-//                          },
+                       onTap: () async{
+                         Navigator.push(context, new MaterialPageRoute(builder: (context) => new RegisterPage()));
+                       },
+                     ),
+                   ),
+                   //卡片事件监听
+                 ),
+                 Card(
+                   clipBehavior: Clip.antiAlias,
+                   semanticContainer: false,
+                   shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(14.0))),
+                   child: Container(
+                     color: Colors.white12,
+                     height: 55,
+                     alignment: Alignment.center,
+                     child: ListTile(
+                       leading: new Icon(
+                         Icons.add,
+                         size: 30,
+                         color: Colors.lightBlue,
+                       ),
+                       title: new Text('敬请期待',
+                           style: new TextStyle(
+                             fontSize: 18,//文字大小
+                             fontFamily: "yahei",
+                             color: Colors.black,
+                           )
+                       ),
+                      //  trailing: new Icon(
+                      //    Icons.arrow_right,
+                      //    size: 30,
+                      //    color: Colors.black38,
+                      //  ),
+                      //  onTap: () async{
+                      //    Navigator.push(context, new MaterialPageRoute(builder: (context) => new RegisterPage()));
+                      //  },
                      ),
                    ),
                    //卡片事件监听

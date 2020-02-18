@@ -7,6 +7,8 @@ import 'HomePage/serversPage.dart';
 import 'HomePage/messagePage.dart';
 import 'HomePage/minePage.dart';
 
+
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -17,6 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
+          // ChangeNotifierProvider(create: (context) => ProviderBoss()),
           ChangeNotifierProvider(create: (context) => ProviderAccount()),
         ],
         child: MaterialApp(

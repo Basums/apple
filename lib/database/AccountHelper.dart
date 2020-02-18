@@ -65,7 +65,7 @@ class AccountHelper {
   //按照id查询
   Future<User> getItem(int userId) async {
     var dbClient = await db;
-    var result = await dbClient.rawQuery("SELECT * FROM $tableName WHERE id = $userId");
+    var result = await dbClient.rawQuery("SELECT * FROM $tableName WHERE UserId = $userId");
     if (result.length == 0) return null;
     return User.fromMap(result.first);
   }

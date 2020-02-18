@@ -25,7 +25,7 @@ class _MessagePageState extends State<MessagePage> {
     });
 
     return Scaffold(
-      backgroundColor: Color(0xffDCDCDC),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -162,31 +162,28 @@ class _MessagePageState extends State<MessagePage> {
                             ),
                             Text("欢迎使用我们的项目",
                                 style: new TextStyle(
-                                fontSize: 18,//文字大小
-                                fontFamily: "yahei",
-                                color: Colors.white60,
-                              )
-                            ),
+                                  fontSize: 18, //文字大小
+                                  fontFamily: "yahei",
+                                  color: Colors.white60,
+                                )),
                             SizedBox(
                               height: 15,
                             ),
                             Text("您的支持将是对我们最好的鼓励",
                                 style: new TextStyle(
-                                fontSize: 18,//文字大小
-                                fontFamily: "yahei",
-                                color: Colors.white60,
-                              )
-                            ),
+                                  fontSize: 18, //文字大小
+                                  fontFamily: "yahei",
+                                  color: Colors.white60,
+                                )),
                             SizedBox(
                               height: 15,
                             ),
                             Text("请开始使用吧",
                                 style: new TextStyle(
-                                fontSize: 18,//文字大小
-                                fontFamily: "yahei",
-                                color: Colors.white60,
-                              )
-                            ),
+                                  fontSize: 18, //文字大小
+                                  fontFamily: "yahei",
+                                  color: Colors.white60,
+                                )),
                           ],
                         ),
                       )),
@@ -291,6 +288,8 @@ class CardScrollWidget extends StatelessWidget {
                                   ),
                                   child: Text(
                                     contexts[i],
+                                    softWrap: true,
+                                    overflow: TextOverflow.fade,
                                     style: TextStyle(
                                         color: Color(0xff528B8B),
                                         fontSize: 18.0,

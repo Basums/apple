@@ -19,10 +19,6 @@ class _MinePageState extends State<MinePage> {
   @override
   Widget build(BuildContext context) {
 
-    ProviderBoss provider = Provider.of<ProviderBoss>(context);
-    //这个没有报错?这个测试的没有报错他说的好像是没上下文?
-    currentNum = provider.curNum;
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -192,32 +188,6 @@ class _MinePageState extends State<MinePage> {
                     ),
                   ),
                   //卡片事件监听
-                ),
-                Text("全局变量测试代码"),
-                Container(
-                  width: 105,
-                  height: 100,
-                  color: Colors.blue,
-                  child: FlatButton(
-                    child: Text("负担"),
-                    onPressed:(){
-                      provider.add();
-                      print("加一");
-                    },
-                  ),
-                ),
-                Text(currentNum.toString()),
-                Container(
-                  width: 100,
-                  height: 100,
-                  color: Colors.cyan,
-                  child: FlatButton(
-                    child: Text("吉安一"),
-                    onPressed:(){
-                      provider.minus(); 
-                      print("吉安一");
-                    },//这些是第一个测试的
-                  ),
                 ),
               ],
             ),
