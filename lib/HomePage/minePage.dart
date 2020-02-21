@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-
 import '../SubPage/AccountInfoPage.dart';
 import '../SubPage/Deviceadd.dart';
-
-
 
 class MinePage extends StatefulWidget {
   @override
@@ -161,7 +158,8 @@ class _MinePageState extends State<MinePage> {
                                 content: new SingleChildScrollView(
                                   child: new ListBody(
                                     children: <Widget>[
-                                      new Text("遇到问题，请联系我们我们随时为您解答，项目的QQ群：*********"),
+                                      new Text(
+                                          "遇到问题，请联系我们我们随时为您解答，项目的QQ群：*********"),
                                     ],
                                   ),
                                 ),
@@ -216,7 +214,8 @@ class _MinePageState extends State<MinePage> {
                                 content: new SingleChildScrollView(
                                   child: new ListBody(
                                     children: <Widget>[
-                                      new Text("基于flutter码这么多真的很不容易，您可以加入我们有什么问题欢迎加入我们项目的QQ群：*********"),
+                                      new Text(
+                                          "基于flutter码这么多真的很不容易，您可以加入我们有什么问题欢迎加入我们项目的QQ群：*********"),
                                     ],
                                   ),
                                 ),

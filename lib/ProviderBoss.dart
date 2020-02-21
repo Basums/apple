@@ -65,6 +65,19 @@ class ProviderAccount extends ChangeNotifier {
 }
 
 class ProviderDevices extends ChangeNotifier {
+  //这是一个小函数，用来检验是否数字字符串
+  int isint(String string) {
+    try {
+      int.parse(string); //如果能通过，则返回1；如果不能返回0
+      return 1;
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  //这个是servers页面的用来显示设备个数//初始化为0;
+  int nowDNum = 0;
+
   //新建数据库
   List<Devices> datas = new List(); //存储设备列表
   var database = DevicesHelper(); //设备数据库
@@ -78,8 +91,7 @@ class ProviderDevices extends ChangeNotifier {
     if (datas.length == 0) //如果数据库成员为空
     {
       //则添加youke到数据库，作为初始化
-      Devices youke = new Devices(2020, "暂无", "暂无",
-          "暂无", "暂无", "暂无");
+      Devices youke = new Devices(2020, "暂无", "暂无", "暂无", "暂无", "暂无");
       //添加进数据库
       devicesDisplay = youke;
     } else if (datas.length > 0) //如果数据库存在数据
@@ -91,6 +103,7 @@ class ProviderDevices extends ChangeNotifier {
 
   getDeviceById(int userid) async {
     devicesDisplay = await database.getItem(userid);
+    addyouxiao();
     notifyListeners();
   }
 
@@ -106,6 +119,56 @@ class ProviderDevices extends ChangeNotifier {
     //这是用来更新该用户下面的对用设备
     //显示
     devicesDisplay = devices;
+    notifyListeners();
+  }
+
+  changenowDNum() {
+    //  print(int.parse());
+    nowDNum = isint(devicesDisplay.deviceOneId) +
+        isint(devicesDisplay.deviceTwoId) +
+        isint(devicesDisplay.deviceThreeId) +
+        isint(devicesDisplay.deviceFourId) +
+        isint(devicesDisplay.deviceFourId);
+    notifyListeners(); //监听
+  }
+
+  List youxiao = new List(6); //存储有效数据
+
+  addyouxiao() {
+    if (devicesDisplay.userId != null) {
+      youxiao[0] = devicesDisplay.userId;
+    } else {
+      youxiao[0] = "2020";
+    }
+    if (devicesDisplay.userId != 2020) {
+      if (isint(devicesDisplay.deviceOneId) == 1) {
+        youxiao[1] = int.parse(devicesDisplay.deviceOneId);
+      } else {
+        youxiao[1] = 0;
+      }
+      if (isint(devicesDisplay.deviceTwoId) == 1) {
+        youxiao[2] = int.parse(devicesDisplay.deviceTwoId);
+      } else {
+        youxiao[2] = 0;
+      }
+      if (isint(devicesDisplay.deviceThreeId) == 1) {
+        youxiao[3] = int.parse(devicesDisplay.deviceThreeId);
+      } else {
+        youxiao[3] = 0;
+      }
+      if (isint(devicesDisplay.deviceFourId) == 1) {
+        youxiao[4] = int.parse(devicesDisplay.deviceFourId);
+      } else {
+        youxiao[4] = 0;
+      }
+      if (isint(devicesDisplay.deviceFiveId) == 1) {
+        youxiao[5] = int.parse(devicesDisplay.deviceFiveId);
+      } else {
+        youxiao[5] = 0;
+      }
+    } else {
+      print("no");
+    }
     notifyListeners();
   }
 }

@@ -173,45 +173,68 @@ class _AccountPageState extends State<AccountPage> {
                             )),
                         onTap: () async {
                           //根据对应Id查询下面匹配的设备信息
-                          providerDevices.getDeviceById(_userDisplay.userId);
-                          //弹出一个对话框，提示用户更新成功
-                          showDialog<Null>(
-                              context: context,
-                              barrierDismissible: false,
-                              builder: (BuildContext context) {
-                                return new AlertDialog(
-                                  title: new Text("当前设备"),
-                                  content: new SingleChildScrollView(
-                                    child: new ListBody(
-                                      children: <Widget>[
-                                        new Text("设备1_Id：  " +
-                                            providerDevices
-                                                .devicesDisplay.deviceOneId),
-                                        new Text("设备2_Id：  " +
-                                            providerDevices
-                                                .devicesDisplay.deviceTwoId),
-                                        new Text("设备3_Id：  " +
-                                            providerDevices
-                                                .devicesDisplay.deviceThreeId),
-                                        new Text("设备4_Id：  " +
-                                            providerDevices
-                                                .devicesDisplay.deviceFourId),
-                                        new Text("设备5_Id：  " +
-                                            providerDevices
-                                                .devicesDisplay.deviceFiveId),
-                                      ],
+                          //率先更新设备个数
+                          providerDevices.changenowDNum();
+                          if (_userDisplay.userId != 2020) {
+                            providerDevices.getDeviceById(_userDisplay.userId);
+                            //弹出一个对话框，提示用户更新成功
+                            showDialog<Null>(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (BuildContext context) {
+                                  return new AlertDialog(
+                                    title: new Text("当前设备"),
+                                    content: new SingleChildScrollView(
+                                      child: new ListBody(
+                                        children: <Widget>[
+                                          new Text("设备1_Id：  " +
+                                              providerDevices
+                                                  .devicesDisplay.deviceOneId),
+                                          new Text("设备2_Id：  " +
+                                              providerDevices
+                                                  .devicesDisplay.deviceTwoId),
+                                          new Text("设备3_Id：  " +
+                                              providerDevices.devicesDisplay
+                                                  .deviceThreeId),
+                                          new Text("设备4_Id：  " +
+                                              providerDevices
+                                                  .devicesDisplay.deviceFourId),
+                                          new Text("设备5_Id：  " +
+                                              providerDevices
+                                                  .devicesDisplay.deviceFiveId),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  actions: <Widget>[
-                                    new FlatButton(
-                                      child: new Text("Ok"),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                    )
-                                  ],
-                                );
-                              });
+                                    actions: <Widget>[
+                                      new FlatButton(
+                                        child: new Text("Ok"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      )
+                                    ],
+                                  );
+                                });
+                          }
+                          else{
+                            showDialog<Null>(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (BuildContext context) {
+                                  return new AlertDialog(
+                                    title: new Text("请登录，亲，游客可不行哦"),
+                                    
+                                    actions: <Widget>[
+                                      new FlatButton(
+                                        child: new Text("Ok"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      )
+                                    ],
+                                  );
+                                });
+                          }
                         },
                       ),
                     ),

@@ -35,6 +35,7 @@ class _DeviceaddPageState extends State<DeviceaddPage> {
   @override
   Widget build(BuildContext context) {
     ProviderAccount providaccount = Provider.of<ProviderAccount>(context);
+    ProviderDevices providerDevices = Provider.of<ProviderDevices>(context);
     _userDisplay = providaccount.userDisplay;
 
     return Scaffold(
@@ -115,7 +116,7 @@ class _DeviceaddPageState extends State<DeviceaddPage> {
             padding: const EdgeInsets.only(left: 15.0, right: 15.0),
             child: Container(
               alignment: Alignment.topCenter,
-              height: 320,
+              height: 380,
               child: Column(
                 children: <Widget>[
                   Card(
@@ -139,11 +140,6 @@ class _DeviceaddPageState extends State<DeviceaddPage> {
                               fontFamily: "yahei",
                               color: Colors.black,
                             )),
-                        //  trailing: new Icon(
-                        //    Icons.arrow_right,
-                        //    size: 30,
-                        //    color: Colors.black38,
-                        //  ),
                         onTap: () async {
                           Navigator.push(
                               context,
@@ -212,11 +208,6 @@ class _DeviceaddPageState extends State<DeviceaddPage> {
                               fontFamily: "yahei",
                               color: Colors.black,
                             )),
-                        //  trailing: new Icon(
-                        //    Icons.arrow_right,
-                        //    size: 30,
-                        //    color: Colors.black38,
-                        //  ),
                         onTap: () async {
                           // print("设备三");
                           Navigator.push(
@@ -249,11 +240,6 @@ class _DeviceaddPageState extends State<DeviceaddPage> {
                               fontFamily: "yahei",
                               color: Colors.black,
                             )),
-                        //  trailing: new Icon(
-                        //    Icons.arrow_right,
-                        //    size: 30,
-                        //    color: Colors.black38,
-                        //  ),
                         onTap: () async {
                           // print("设备四");
                           Navigator.push(
@@ -286,17 +272,100 @@ class _DeviceaddPageState extends State<DeviceaddPage> {
                               fontFamily: "yahei",
                               color: Colors.black,
                             )),
-                        //  trailing: new Icon(
-                        //    Icons.arrow_right,
-                        //    size: 30,
-                        //    color: Colors.black38,
-                        //  ),
                         onTap: () async {
                           // print("设备五");
                           Navigator.push(
                               context,
                               new MaterialPageRoute(
                                   builder: (context) => new Addfive()));
+                        },
+                      ),
+                    ),
+                    //卡片事件监听
+                  ),
+                  Card(
+                    clipBehavior: Clip.antiAlias,
+                    semanticContainer: false,
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(14.0))),
+                    child: Container(
+                      color: Colors.white12,
+                      height: 55,
+                      alignment: Alignment.center,
+                      child: ListTile(
+                        leading: new Icon(
+                          Icons.add,
+                          size: 30,
+                          color: Colors.lightBlue,
+                        ),
+                        title: new Text('连接账号匹配的设备信息',
+                            style: new TextStyle(
+                              fontSize: 18, //文字大小
+                              fontFamily: "yahei",
+                              color: Colors.black,
+                            )),
+                        onTap: () async {
+                          //根据对应Id查询下面匹配的设备信息
+                          //率先更新设备个数
+                          providerDevices.changenowDNum();
+                          if (_userDisplay.userId != 2020) {
+                            providerDevices.getDeviceById(_userDisplay.userId);
+                            //弹出一个对话框，提示用户更新成功
+                            showDialog<Null>(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (BuildContext context) {
+                                  return new AlertDialog(
+                                    title: new Text("当前设备"),
+                                    content: new SingleChildScrollView(
+                                      child: new ListBody(
+                                        children: <Widget>[
+                                          new Text("设备1_Id：  " +
+                                              providerDevices
+                                                  .devicesDisplay.deviceOneId),
+                                          new Text("设备2_Id：  " +
+                                              providerDevices
+                                                  .devicesDisplay.deviceTwoId),
+                                          new Text("设备3_Id：  " +
+                                              providerDevices.devicesDisplay
+                                                  .deviceThreeId),
+                                          new Text("设备4_Id：  " +
+                                              providerDevices
+                                                  .devicesDisplay.deviceFourId),
+                                          new Text("设备5_Id：  " +
+                                              providerDevices
+                                                  .devicesDisplay.deviceFiveId),
+                                        ],
+                                      ),
+                                    ),
+                                    actions: <Widget>[
+                                      new FlatButton(
+                                        child: new Text("Ok"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      )
+                                    ],
+                                  );
+                                });
+                          } else {
+                            showDialog<Null>(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (BuildContext context) {
+                                  return new AlertDialog(
+                                    title: new Text("请登录，亲，游客可不行哦"),
+                                    actions: <Widget>[
+                                      new FlatButton(
+                                        child: new Text("Ok"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      )
+                                    ],
+                                  );
+                                });
+                          }
                         },
                       ),
                     ),

@@ -12,7 +12,6 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   static const String _title = "Flutter Code Sample";
   //定义全局变量
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
